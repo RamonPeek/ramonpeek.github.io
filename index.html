@@ -4,37 +4,50 @@
   <meta charset="utf-8">
   <title>Calculator</title>
   <link href="style.css" rel="stylesheet" />
-  <script src="./script.js"></script>
-
 </head>
 <body>
+    <script>
+            function setSolutions() {
+                let koopsom = document.getElementById("koopsom").value;
+                let courtage = document.getElementById("courtage").value;
+                let exBtw = Math.round((koopsom * (courtage/100)) * 100) / 100;
+                let inclBtw = Math.round((exBtw * 1.21) * 100) / 100;
+                document.getElementById("exBtw").value = exBtw;
+                document.getElementById("inclBtw").value = inclBtw;
+            }
+    </script>
     <div style="width: 100%; height: 100%; display: flex; flex-direction: row; justify-content: center; margin-top: 120px;">
         <div style="max-width: 400px;">
             <div style="display: flex; flex-direction: row; margin-bottom: 10px;">
                 <div style="width: 120px">
                     <p style="margin-right: 20px;">Koopsom</p>
                 </div>
-                <input type="number" id="koopsom"/>
+                <input type="number" step="0.01" id="koopsom" style="padding-left: 20px;" oninput="setSolutions()"/>
             </div>
             <div style="display: flex; flex-direction: row; margin-bottom: 10px;">
                 <div style="width: 120px">
                     <p style="margin-right: 20px;">Courtage</p>
                 </div>
-                <input type="number" id="courtage" style="margin-right: 20px;"/>
+                <input type="number" step="0.01" id="courtage" style="padding-left: 20px; margin-right: 20px;" oninput="setSolutions()"/>
                 <p>%</p>
             </div>
             <div style="display: flex; flex-direction: row; margin-bottom: 10px;">
                 <div style="width: 120px">
                     <p style="margin-right: 20px;">Ex. BTW = </p>
                 </div>
-                <input type="number" id="courtage" disabled/>
+                <input type="number" id="exBtw" style="padding-left: 20px;" disabled/>
             </div>
             <div style="display: flex; flex-direction: row; margin-bottom: 10px;">
                 <div style="width: 120px">
                     <p style="margin-right: 20px;">Incl. BTW = </p>
                 </div>
-                <input type="number" id="courtage" disabled/>
+                <input type="number" id="inclBtw" style="padding-left: 20px;" disabled/>
             </div>
+
+            <p style="color: red; margin-top: 50px;">
+                Je moet ervoor zorgen dat je geen . gebruikt in je koopsom en courtage.
+                Bijvoorbeeld: gebruik 100000 i.p.v. 100.000
+            </p>
         </div>
     </div>
 </body>
